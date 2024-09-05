@@ -10,16 +10,16 @@ const crearUsuario = async( req, res = response ) => {
 
     try {
 
-        let usuario = await Usuario.findOne({ email: email});
+        let usuario = await Usuario.findOne({ email });
         
-        if (usuario) {
+        if ( usuario ) {
             return res.status(400).json({
                 ok: false,
-                msg: 'Un usuario existe con ese correo'
+                msg: 'Ya existe un usuario con ese correo'
             });
-        };
+        }
 
-        usuario = new Usuario(req.body);
+        usuario = new Usuario( req.body );
 
         // Encriptar contraseña
         const salt = bcrypt.genSaltSync();
